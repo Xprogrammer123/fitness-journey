@@ -4,17 +4,44 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 
 const Login = () => {
   const [name, setName] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
+  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (name.trim()) {
-      login(name);
-      navigate("/");
+    
+    const trimmedName = name.trim();
+    if (!trimmedName) {
+      toast({
+        title: "Error",
+        description: "Please enter your name",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      await login(trimmedName);
+      toast({
+        title: "Welcome!",
+        description: "Successfully logged in",
+      });
+      navigate("/", { replace: true });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to log in. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -33,10 +60,18 @@ const Login = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
+              disabled={isLoading}
+              required
+              minLength={2}
+              maxLength={50}
             />
           </div>
-          <Button type="submit" className="w-full bg-primary-500 hover:bg-primary-600">
-            Sign In
+          <Button 
+            type="submit" 
+            className="w-full bg-primary-500 hover:bg-primary-600"
+            disabled={isLoading}
+          >
+            {isLoading ? "Signing in..." : "Sign In"}
           </Button>
         </form>
       </div>

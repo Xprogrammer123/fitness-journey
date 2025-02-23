@@ -3,8 +3,8 @@ import React, { createContext, useContext, useState, useCallback } from "react";
 
 interface AuthContextType {
   user: string | null;
-  login: (name: string) => void;
-  logout: () => void;
+  login: (name: string) => Promise<void>;
+  logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -18,14 +18,43 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<string | null>(null);
+  const [user, setUser] = useState<string | null>(() => {
+    // Check if there's a stored user in localStorage
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
-  const login = useCallback((name: string) => {
-    setUser(name);
+  const login = useCallback(async (name: string) => {
+    try {
+      // Simulate an API call with a delay
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      
+      // Validate name
+      if (!name || name.length < 2) {
+        throw new Error("Invalid name");
+      }
+
+      // Store user in localStorage for persistence
+      localStorage.setItem("user", JSON.stringify(name));
+      setUser(name);
+    } catch (error) {
+      console.error("Login error:", error);
+      throw error;
+    }
   }, []);
 
-  const logout = useCallback(() => {
-    setUser(null);
+  const logout = useCallback(async () => {
+    try {
+      // Simulate an API call with a delay
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      
+      // Clear stored user data
+      localStorage.removeItem("user");
+      setUser(null);
+    } catch (error) {
+      console.error("Logout error:", error);
+      throw error;
+    }
   }, []);
 
   return (
