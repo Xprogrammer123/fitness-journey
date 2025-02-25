@@ -213,4 +213,18 @@ export default function Nutrition() {
                   <TableCell className="font-medium text-gray-300">{meal.time}</TableCell>
                   <TableCell className="text-white">{meal.name}</TableCell>
                   <TableCell className="text-right text-gray-300">{meal.calories} kcal</TableCell>
-                  <TableCell className="text-right text
+                  <TableCell className="text-right text-gray-300">{meal.protein}g</TableCell>
+                  <TableCell className="text-right text-gray-300">{meal.carbs}g</TableCell>
+                  <TableCell className="text-right text-gray-300">{meal.fat}g</TableCell>
+                  <TableCell className="text-right">
+                    <Button variant="ghost" size="sm">Details</Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}

@@ -155,4 +155,176 @@ export default function Community() {
                     </div>
                   </CardHeader>
                   <CardContent className="py-0">
-                    <p className="text-gray-200 mb-4"
+                    <p className="text-gray-200 mb-4">{post.content}</p>
+                    {post.image && (
+                      <div className="relative rounded-lg overflow-hidden mb-4 aspect-video">
+                        <img src={post.image} alt="Post content" className="w-full h-full object-cover" />
+                      </div>
+                    )}
+                  </CardContent>
+                  <CardFooter className="py-3 flex justify-between border-t border-gray-700">
+                    <Button variant="ghost" size="sm" className="text-gray-400 hover:text-red-400">
+                      <Heart className="mr-1 h-4 w-4" /> {post.likes}
+                    </Button>
+                    <Button variant="ghost" size="sm" className="text-gray-400">
+                      <MessageSquare className="mr-1 h-4 w-4" /> {post.comments}
+                    </Button>
+                    <Button variant="ghost" size="sm" className="text-gray-400">
+                      <Share2 className="mr-1 h-4 w-4" /> Share
+                    </Button>
+                  </CardFooter>
+                </Card>
+              ))}
+            </TabsContent>
+            
+            <TabsContent value="challenges" className="mt-0 space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {challengeData.map((challenge) => (
+                  <Card key={challenge.id} className="bg-gray-800/50 border-gray-700">
+                    <CardHeader>
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <CardTitle className="text-white">{challenge.title}</CardTitle>
+                          <CardDescription>{challenge.participants} participants</CardDescription>
+                        </div>
+                        <span className={`px-2 py-1 rounded-full text-xs ${
+                          challenge.difficulty === "Beginner" ? "bg-green-900/70 text-green-300" :
+                          challenge.difficulty === "Intermediate" ? "bg-blue-900/70 text-blue-300" :
+                          "bg-red-900/70 text-red-300"
+                        }`}>
+                          {challenge.difficulty}
+                        </span>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        <div>
+                          <div className="flex justify-between mb-1 text-sm">
+                            <span className="text-gray-400">Progress</span>
+                            <span className="text-gray-400">{challenge.progress}%</span>
+                          </div>
+                          <div className="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
+                            <div
+                              className="h-full bg-primary rounded-full"
+                              style={{ width: `${challenge.progress}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-gray-400">{challenge.daysLeft} days left</span>
+                          <Button size="sm">Join Challenge</Button>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="groups" className="mt-0">
+              <Card className="bg-gray-800/50 border-gray-700">
+                <CardContent className="pt-6">
+                  <div className="text-center py-8">
+                    <Users className="mx-auto h-12 w-12 text-gray-400 mb-4" />
+                    <h3 className="text-xl font-medium text-white mb-2">Join Fitness Groups</h3>
+                    <p className="text-gray-400 mb-4">
+                      Connect with others who share your fitness interests and goals
+                    </p>
+                    <Button>Browse Groups</Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+            
+            <TabsContent value="events" className="mt-0">
+              <Card className="bg-gray-800/50 border-gray-700">
+                <CardContent className="pt-6">
+                  <div className="text-center py-8">
+                    <Calendar className="mx-auto h-12 w-12 text-gray-400 mb-4" />
+                    <h3 className="text-xl font-medium text-white mb-2">Find Fitness Events</h3>
+                    <p className="text-gray-400 mb-4">
+                      Discover local workouts, races, and fitness meetups
+                    </p>
+                    <Button>Explore Events</Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
+        </div>
+
+        {/* Sidebar */}
+        <div className="lg:col-span-4 space-y-6">
+          {/* Leaderboard */}
+          <Card className="bg-gray-800/50 border-gray-700">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-white">
+                <div className="flex items-center">
+                  <Award className="mr-2 h-5 w-5 text-yellow-500" />
+                  Community Leaders
+                </div>
+              </CardTitle>
+              <CardDescription>Top contributors this month</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {activeUsers.map((user, index) => (
+                  <div key={user.name} className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <div className="flex items-center justify-center w-6">
+                        {index < 3 ? (
+                          <span className={`text-sm font-bold ${
+                            index === 0 ? "text-yellow-500" :
+                            index === 1 ? "text-gray-300" :
+                            "text-amber-700"
+                          }`}>
+                            #{index + 1}
+                          </span>
+                        ) : (
+                          <span className="text-sm text-gray-500">#{index + 1}</span>
+                        )}
+                      </div>
+                      <Avatar className="h-8 w-8">
+                        <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
+                        <AvatarImage src={user.avatar} />
+                      </Avatar>
+                      <span className="font-medium text-gray-200">{user.name}</span>
+                    </div>
+                    <span className="text-sm text-primary">{user.points} pts</span>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Trending */}
+          <Card className="bg-gray-800/50 border-gray-700">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-white flex items-center">
+                <TrendingUp className="mr-2 h-5 w-5 text-green-500" />
+                Trending
+              </CardTitle>
+              <CardDescription>Popular topics and hashtags</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                <div className="bg-gray-700/50 rounded-lg p-3">
+                  <div className="font-medium text-white">#SummerShred</div>
+                  <p className="text-sm text-gray-400">2.5k posts this week</p>
+                </div>
+                <div className="bg-gray-700/50 rounded-lg p-3">
+                  <div className="font-medium text-white">#MorningWorkout</div>
+                  <p className="text-sm text-gray-400">1.8k posts this week</p>
+                </div>
+                <div className="bg-gray-700/50 rounded-lg p-3">
+                  <div className="font-medium text-white">#MealPrep</div>
+                  <p className="text-sm text-gray-400">1.2k posts this week</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </div>
+  );
+}
