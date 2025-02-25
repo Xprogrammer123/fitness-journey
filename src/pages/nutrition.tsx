@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PieChart, LineChart, CartesianGrid, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, Pie, Cell } from "recharts";
@@ -8,8 +7,23 @@ import { Progress } from "@/components/ui/progress";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
+interface NutritionMetric {
+  consumed: number;
+  goal: number;
+  unit?: string;
+}
+
+interface DailyNutrition {
+  calories: NutritionMetric;
+  protein: NutritionMetric;
+  carbs: NutritionMetric;
+  fat: NutritionMetric;
+  fiber: NutritionMetric;
+  water: NutritionMetric;
+}
+
 // Sample data for nutrition tracking
-const dailyNutrition = {
+const dailyNutrition: DailyNutrition = {
   calories: { consumed: 1840, goal: 2500 },
   protein: { consumed: 110, goal: 150, unit: "g" },
   carbs: { consumed: 180, goal: 250, unit: "g" },

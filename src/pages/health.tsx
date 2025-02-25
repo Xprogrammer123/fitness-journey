@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LineChart, CartesianGrid, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from "recharts";
@@ -105,7 +104,10 @@ export default function Health() {
                 <span className="text-gray-400">Goal: {caloriesGoal.toLocaleString()}</span>
                 <span className="text-gray-400">{Math.round((caloriesBurned/caloriesGoal) * 100)}%</span>
               </div>
-              <Progress value={(caloriesBurned/caloriesGoal) * 100} className="h-2" />
+              <Progress
+                value={(caloriesBurned/caloriesGoal) * 100}
+                className={`h-2 ${caloriesBurned >= caloriesGoal ? 'bg-green-500' : ''}`}
+              />
             </div>
           </CardContent>
         </Card>
@@ -187,11 +189,7 @@ export default function Health() {
               <Progress 
                 value={stressLevel} 
                 className="h-4 rounded-md" 
-                indicatorClassName={`rounded-md ${
-                  stressLevel < 40 ? "bg-green-500" : 
-                  stressLevel < 70 ? "bg-yellow-500" : 
-                  "bg-red-500"
-                }`}
+                
               />
               <p className="text-sm text-center mt-2 text-gray-300">
                 Your stress level is {stressLevel < 40 ? "low" : stressLevel < 70 ? "moderate" : "high"}

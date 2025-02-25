@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
@@ -156,8 +155,7 @@ export default function Achievements() {
                     </div>
                     <Progress 
                       value={(achievement.progress / achievement.total) * 100} 
-                      className="h-2"
-                      indicatorClassName={`${achievement.completed ? 'bg-green-500' : ''}`} 
+                      className={`h-2 ${achievement.completed ? 'bg-green-500' : ''}`}
                     />
                   </div>
                 </CardContent>

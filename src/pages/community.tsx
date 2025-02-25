@@ -1,10 +1,9 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Search, MessageSquare, Heart, Award, TrendingUp, Users, Share2 } from "lucide-react";
+import { Search, MessageSquare, Heart, Award, TrendingUp, Users, Share2, Calendar } from "lucide-react";
 
 // Sample data for community section
 const communityPosts = [
