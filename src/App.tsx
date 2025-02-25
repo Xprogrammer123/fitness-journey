@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -7,8 +6,14 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { useAuth } from "./context/AuthContext";
 import { Sidebar } from "./components/Sidebar";
+
+// Importing all pages
 import Index from "./pages/Index";
 import Login from "./pages/Login";
+import Workouts from "./pages/Workouts";
+import Schedule from "./pages/Schedule";
+import Progress from "./pages/Progress";
+import Settings from "./pages/Settings";
 
 const queryClient = new QueryClient();
 
@@ -35,7 +40,10 @@ const AppLayout = () => {
           <Sonner />
           <BrowserRouter>
             <Routes>
+              {/* Public Route */}
               <Route path="/login" element={<Login />} />
+
+              {/* Protected Routes */}
               <Route
                 path="/"
                 element={
@@ -44,25 +52,38 @@ const AppLayout = () => {
                   </ProtectedRoute>
                 }
               />
-              {/* Add placeholder routes for sidebar navigation */}
-              {["/workouts", "/schedule", "/progress", "/settings"].map((path) => (
-                <Route
-                  key={path}
-                  path={path}
-                  element={
-                    <ProtectedRoute>
-                      <div className="p-8">
-                        <h1 className="text-3xl font-bold text-white">
-                          {path.slice(1).charAt(0).toUpperCase() + path.slice(2)} Page
-                        </h1>
-                        <p className="text-gray-400 mt-2">
-                          This is a placeholder page for {path.slice(1)}
-                        </p>
-                      </div>
-                    </ProtectedRoute>
-                  }
-                />
-              ))}
+              <Route
+                path="/workouts"
+                element={
+                  <ProtectedRoute>
+                    <Workouts />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/schedule"
+                element={
+                  <ProtectedRoute>
+                    <Schedule />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/progress"
+                element={
+                  <ProtectedRoute>
+                    <Progress />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/settings"
+                element={
+                  <ProtectedRoute>
+                    <Settings />
+                  </ProtectedRoute>
+                }
+              />
             </Routes>
           </BrowserRouter>
         </TooltipProvider>
