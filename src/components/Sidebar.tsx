@@ -1,5 +1,5 @@
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 import { 
@@ -23,6 +23,7 @@ const menuItems = [
 
 export const Sidebar = () => {
   const { logout } = useAuth();
+  const location = useLocation();
 
   const SidebarContent = () => (
     <div className="h-full flex flex-col bg-gray-900">
@@ -34,7 +35,9 @@ export const Sidebar = () => {
           <Link
             key={item.label}
             to={item.path}
-            className="flex items-center space-x-2 px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white transition-colors"
+            className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white transition-colors ${
+              location.pathname === item.path ? "bg-gray-800 text-white" : ""
+            }`}
           >
             <item.icon className="w-5 h-5" />
             <span>{item.label}</span>
