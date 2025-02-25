@@ -40,7 +40,7 @@ export const Sidebar = () => {
   const location = useLocation();
 
   const SidebarContent = () => (
-    <div className="h-full flex flex-col bg-gray-900 overflow-y-auto w-full">
+    <div className="h-full flex flex-col bg-gray-900 overflow-y-auto min-w-full">
       <div className="p-4">
         <h2 className="text-xl font-bold text-primary-500">FitTrack</h2>
       </div>
