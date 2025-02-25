@@ -26,7 +26,7 @@ export const Sidebar = () => {
   const location = useLocation();
 
   const SidebarContent = () => (
-    <div className="h-full flex flex-col bg-gray-900">
+    <div className="h-full flex flex-col bg-gray-900 w-full">
       <div className="p-4">
         <h2 className="text-xl font-bold text-primary-500">FitTrack</h2>
       </div>
@@ -60,7 +60,7 @@ export const Sidebar = () => {
   return (
     <>
       {/* Desktop Sidebar */}
-      <div className="hidden md:flex h-screen w-72 xl:w-80 border-r border-gray-800">
+      <div className="hidden md:flex h-screen w-64 xl:w-80 border-r border-gray-800">
         <SidebarContent />
       </div>
 
@@ -71,7 +71,7 @@ export const Sidebar = () => {
             <Menu className="w-5 h-5" />
           </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="w-72 p-0">
+        <SheetContent side="left" className="w-64 p-0">
           <SidebarContent />
         </SheetContent>
       </Sheet>
