@@ -296,4 +296,37 @@ export default function Reports() {
                   <SelectContent className="bg-gray-800 border-gray-700">
                     <SelectItem value="week">This Week</SelectItem>
                     <SelectItem value="month">This Month</SelectItem>
-                    <SelectItem value="quarter
+                    <SelectItem value="quarter">This Quarter</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <ResponsiveContainer width="100%" height={300}>
+                <LineChart
+                  data={nutritionData}
+                  margin={{
+                    top: 5,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" stroke="#444" />
+                  <XAxis dataKey="date" stroke="#888" />
+                  <YAxis stroke="#888" />
+                  <Tooltip contentStyle={{ backgroundColor: '#272727', borderColor: '#444' }} />
+                  <Legend />
+                  <Line type="monotone" dataKey="calories" name="Calories" stroke="#f97316" strokeWidth={2} />
+                  <Line type="monotone" dataKey="protein" name="Protein (g)" stroke="#3b82f6" strokeWidth={2} />
+                  <Line type="monotone" dataKey="carbs" name="Carbs (g)" stroke="#10b981" strokeWidth={2} />
+                  <Line type="monotone" dataKey="fat" name="Fat (g)" stroke="#f59e0b" strokeWidth={2} />
+                </LineChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
+    </div>
+  );
+}
