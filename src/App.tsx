@@ -15,6 +15,13 @@ import Workouts from "./pages/workouts";
 import Schedule from "./pages/schedule";
 import Progress from "./pages/progress";
 import Settings from "./pages/settings";
+import Exercises from "./pages/exercises";
+import Tracking from "./pages/tracking";
+import Nutrition from "./pages/nutrition";
+import Health from "./pages/health";
+import Community from "./pages/community";
+import Achievements from "./pages/achievements";
+import Reports from "./pages/reports";
 
 const queryClient = new QueryClient();
 
@@ -62,6 +69,14 @@ const AppLayout = () => {
                 }
               />
               <Route
+                path="/exercises"
+                element={
+                  <ProtectedRoute>
+                    <Exercises />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
                 path="/schedule"
                 element={
                   <ProtectedRoute>
@@ -70,10 +85,58 @@ const AppLayout = () => {
                 }
               />
               <Route
+                path="/tracking"
+                element={
+                  <ProtectedRoute>
+                    <Tracking />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
                 path="/progress"
                 element={
                   <ProtectedRoute>
                     <Progress />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/nutrition"
+                element={
+                  <ProtectedRoute>
+                    <Nutrition />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/health"
+                element={
+                  <ProtectedRoute>
+                    <Health />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/community"
+                element={
+                  <ProtectedRoute>
+                    <Community />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/achievements"
+                element={
+                  <ProtectedRoute>
+                    <Achievements />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/reports"
+                element={
+                  <ProtectedRoute>
+                    <Reports />
                   </ProtectedRoute>
                 }
               />

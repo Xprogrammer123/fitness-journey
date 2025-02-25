@@ -10,14 +10,28 @@ import {
   Settings, 
   LogOut,
   Menu,
+  Users,
+  Award,
+  Heart,
+  FileText,
+  Dumbbell,
+  Clock,
+  PieChart,
 } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const menuItems = [
   { icon: Home, label: "Dashboard", path: "/" },
   { icon: Activity, label: "Workouts", path: "/workouts" },
+  { icon: Dumbbell, label: "Exercises", path: "/exercises" },
   { icon: Calendar, label: "Schedule", path: "/schedule" },
+  { icon: Clock, label: "Tracking", path: "/tracking" },
   { icon: BarChart2, label: "Progress", path: "/progress" },
+  { icon: PieChart, label: "Nutrition", path: "/nutrition" },
+  { icon: Heart, label: "Health", path: "/health" },
+  { icon: Users, label: "Community", path: "/community" },
+  { icon: Award, label: "Achievements", path: "/achievements" },
+  { icon: FileText, label: "Reports", path: "/reports" },
   { icon: Settings, label: "Settings", path: "/settings" },
 ];
 
@@ -26,7 +40,7 @@ export const Sidebar = () => {
   const location = useLocation();
 
   const SidebarContent = () => (
-    <div className="h-full flex flex-col bg-gray-900 w-full">
+    <div className="h-full flex flex-col bg-gray-900 overflow-y-auto">
       <div className="p-4">
         <h2 className="text-xl font-bold text-primary-500">FitTrack</h2>
       </div>
@@ -60,7 +74,7 @@ export const Sidebar = () => {
   return (
     <>
       {/* Desktop Sidebar */}
-      <div className="hidden md:flex h-screen w-56 xl:w-80 border-r border-gray-800">
+      <div className="hidden md:flex h-screen w-72 xl:w-80 border-r border-gray-800">
         <SidebarContent />
       </div>
 
@@ -71,7 +85,7 @@ export const Sidebar = () => {
             <Menu className="w-5 h-5" />
           </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="w-56 p-0">
+        <SheetContent side="left" className="w-72 p-0">
           <SidebarContent />
         </SheetContent>
       </Sheet>
