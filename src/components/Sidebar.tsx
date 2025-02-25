@@ -60,7 +60,7 @@ export const Sidebar = () => {
   return (
     <>
       {/* Desktop Sidebar */}
-      <div className="hidden md:flex h-screen w-64 xl:w-80 border-r border-gray-800">
+      <div className="hidden md:flex h-screen w-56 xl:w-80 border-r border-gray-800">
         <SidebarContent />
       </div>
 
@@ -71,7 +71,7 @@ export const Sidebar = () => {
             <Menu className="w-5 h-5" />
           </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="w-64 p-0">
+        <SheetContent side="left" className="w-56 p-0">
           <SidebarContent />
         </SheetContent>
       </Sheet>
