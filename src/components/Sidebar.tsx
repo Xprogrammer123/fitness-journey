@@ -40,7 +40,7 @@ export const Sidebar = () => {
   const location = useLocation();
 
   const SidebarContent = () => (
-    <div className="h-full flex flex-col bg-gray-900 overflow-y-auto">
+    <div className="h-full flex flex-col bg-gray-900 overflow-y-auto w-full">
       <div className="p-4">
         <h2 className="text-xl font-bold text-primary-500">FitTrack</h2>
       </div>
@@ -49,7 +49,7 @@ export const Sidebar = () => {
           <Link
             key={item.label}
             to={item.path}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white transition-colors ${
+            className={`flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white transition-colors ${
               location.pathname === item.path ? "bg-gray-800 text-white" : ""
             }`}
           >
