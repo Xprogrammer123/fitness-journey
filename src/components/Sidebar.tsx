@@ -82,7 +82,7 @@ export const Sidebar = () => {
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="ghost" size="icon" className="md:hidden">
-            <Menu className="w-5 h-5" />
+            <Menu className="w-5 h-5 text-white" />
           </Button>
         </SheetTrigger>
         <SheetContent side="left" className="w-72 p-0">
